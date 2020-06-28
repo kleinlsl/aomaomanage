@@ -40,6 +40,7 @@ D:
 │  │  │          ├─domin
 │  │  │          └─service
 │  │  ├─resources   # 项目资源文件
+│  │  │  ├─database-conf   # 数据库连接配置
 │  │  │  ├─mappings 
 │  │  │  ├─mybatis-conf  # mybatis配置文件
 │  │  │  └─spring-conf   #spring相关配置文件

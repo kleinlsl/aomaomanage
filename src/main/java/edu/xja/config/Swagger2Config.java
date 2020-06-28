@@ -13,7 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * @project: ssm-learn1
+ * @project: aomaomanage
  * @description: https://blog.csdn.net/qq1043197615/article/details/83719856
  * @author: dell
  * @date: 2020/6/25 - 13:53
@@ -39,9 +39,9 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("Spring Boot集成Swagger2构建RESTful API")
+                .title("SSM集成Swagger2构建RESTful API")
                 //创建人
-                .contact(new Contact("Thomas", "http://www.nynu.edu.cn", "thomas@163.com"))
+                .contact(new Contact("12组", "https://gitee.com/kleinlsl/aomaomanage", "2445859460@qq.com"))
                 //版本号
                 .version("1.9")
                 //描述

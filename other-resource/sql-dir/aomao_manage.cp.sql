@@ -1,4 +1,4 @@
-create table t_admin
+create table if not exists t_admin
 (
     id            int auto_increment comment '主键，自增长'
         primary key,
@@ -16,7 +16,7 @@ create table t_admin
 )
     comment '管理员信息表';
 
-create table t_cinema
+create table if not exists t_cinema
 (
     id                 int auto_increment comment '主键，自增长'
         primary key,
@@ -37,7 +37,7 @@ create table t_cinema
 )
     comment '影院信息表';
 
-create table t_city
+create table if not exists t_city
 (
     id              int auto_increment comment '主键，自增长'
         primary key,
@@ -52,7 +52,7 @@ create table t_city
 )
     comment '城市';
 
-create table t_district
+create table if not exists t_district
 (
     id            int auto_increment comment '主键，自增长'
         primary key,
@@ -66,7 +66,7 @@ create table t_district
 )
     comment '城市行政区表';
 
-create table t_film
+create table if not exists t_film
 (
     id                   int auto_increment comment '主键，自增长'
         primary key,
@@ -92,7 +92,7 @@ create table t_film
 )
     comment '影片表';
 
-create table t_film_image
+create table if not exists t_film_image
 (
     id                  int auto_increment comment '主键，自增长'
         primary key,
@@ -109,7 +109,7 @@ create table t_film_image
 )
     comment '影片图集表';
 
-create table t_film_schedule
+create table if not exists t_film_schedule
 (
     id               int auto_increment comment '主键，自增长'
         primary key,
@@ -129,7 +129,7 @@ create table t_film_schedule
 )
     comment '场次(排片表)';
 
-create table t_hall
+create table if not exists t_hall
 (
     id            int auto_increment comment '主键，自增长'
         primary key,
@@ -147,7 +147,7 @@ create table t_hall
 )
     comment '影厅信息表';
 
-create table t_seat
+create table if not exists t_seat
 (
     id           int auto_increment comment '主键，自增长'
         primary key,
@@ -164,7 +164,7 @@ create table t_seat
 )
     comment '座位信息表';
 
-create table t_seat_saleinfo
+create table if not exists t_seat_saleinfo
 (
     id           int auto_increment comment '主键，自增长'
         primary key,
