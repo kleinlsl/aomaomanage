@@ -18,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author: dell
  * @date: 2020/6/25 - 13:53
  * @version: 1.0
- * @website:
+ * @website: http://localhost:8080/aomaomanage/swagger-ui.html
  */
 
 @Configuration
