@@ -9,7 +9,7 @@ import java.util.List;
  * @date: 2020/6/29 - 21:53
  */
 public interface ProductInfoMapper {
-    // TODO: 2020/6/29 通过主键删除商品信息
+    // TODO: 2020/6/29 通过主键删除商品信息（物理删除）
     int deleteByPrimaryKey(Integer id);
 
     // TODO: 2020/6/29 添加商品信息
@@ -32,4 +32,8 @@ public interface ProductInfoMapper {
 
     // TODO: 2020/6/29 查找所有商品信息
     List<ProductInfo> findAll();
+
+    // TODO: 2020/6/30 通过主键删除商品信息（逻辑删除）
+    int updateDeleteFlagByPrimaryKey(Integer id);
+
 }

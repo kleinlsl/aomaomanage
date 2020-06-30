@@ -115,4 +115,11 @@ public class ProductInfoMapperTest extends BaseTest {
             }
         }
     }
+
+    @Test
+    public void updateDeleteFlagByPrimaryKey() {
+        int res = productInfoMapper.updateDeleteFlagByPrimaryKey(1);
+        Assert.assertNotNull(res);
+        Assert.assertTrue(res==1);
+    }
 }

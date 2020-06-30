@@ -1,6 +1,6 @@
 package edu.xja.dao;
 /**
- * @description: 商品类别Map数据接口
+ * @description: 商品类别表，数据访问层
  * @date: 2020/6/29 - 19:31
  */
 
@@ -9,7 +9,7 @@ import edu.xja.domain.Type;
 import java.util.List;
 
 public interface TypeMapper {
-    // TODO: 2020/6/29 通过主键删除商品类别
+    // TODO: 2020/6/29 通过主键删除商品类别（物理删除）
     int deleteByPrimaryKey(Integer id);
 
     // TODO: 2020/6/29 添加商品类别
@@ -29,4 +29,7 @@ public interface TypeMapper {
 
     // TODO: 2020/6/29 查询全部商品类别
     List<Type> findAll();
+
+    // TODO: 2020/6/30 通过主键删除商品类别信息(逻辑删除)
+    int updateDeleteFlagByPrimaryKey(Integer id);
 }

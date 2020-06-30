@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @project: aomaomanage
- * @description: dao层单元测试
+ * @description: 单元测试：商品类型表数据访问层
  * @author: dell
  * @date: 2020/6/29 - 19:42
  * @version: 1.0
@@ -89,5 +89,12 @@ public class TypeMapperTest extends BaseTest {
                 System.out.println(type);
             }
         }
+    }
+
+    @Test
+    public void updateDeleteFlagByPrimaryKey() {
+        int res = typeMapper.updateDeleteFlagByPrimaryKey(1);
+        Assert.assertNotNull(res);
+        Assert.assertTrue(res==1);
     }
 }
