@@ -97,4 +97,14 @@ public class TypeServiceTest extends BaseTest {
         Assert.assertNotNull(res);
         Assert.assertTrue(res==1);
     }
+
+    @Test
+    public void search() {
+        List<Type> typeList=typeService.search("手");
+        Assert.assertNotNull(typeList);
+        for (Type t:typeList
+        ) {
+            System.out.println(t);
+        }
+    }
 }

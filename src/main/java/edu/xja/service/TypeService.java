@@ -36,4 +36,7 @@ public interface TypeService {
 
     // TODO: 2020/6/30 通过主键删除商品类别信息(逻辑删除)
     int updateDeleteFlagByPrimaryKey(Integer id);
+
+    // TODO: 2020/7/2 通过类别名 ， 模糊查询类别信息
+    List<Type> search(String typeName);
 }

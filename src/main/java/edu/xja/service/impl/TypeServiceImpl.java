@@ -52,4 +52,8 @@ public class TypeServiceImpl implements TypeService {
     public int updateDeleteFlagByPrimaryKey(Integer id) {
         return typeMapper.updateDeleteFlagByPrimaryKey(id);
     }
+
+    public List<Type> search(String typeName) {
+        return typeMapper.search(typeName);
+    }
 }

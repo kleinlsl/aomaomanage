@@ -146,4 +146,18 @@
         set delete_flag=1
         where id= #{id,jdbcType=INTEGER}
     </update>
+
+    <!-- 通过类别名 ， 模糊查询类别信息   -->
+    <select id="search" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_type
+        <where>
+            <if test="typeName != null">
+                name like concat('%',#{typeName},'%')
+            </if>
+        </where>
+
+    </select>
+
 </mapper>
