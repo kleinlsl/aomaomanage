@@ -2,6 +2,7 @@ package edu.xja.service.impl;
 
 import edu.xja.dao.ProductInfoMapper;
 import edu.xja.domain.ProductInfo;
+import edu.xja.domain.Type;
 import edu.xja.service.ProductInfoService;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +55,9 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
     public int updateDeleteFlagByPrimaryKey(Integer id) {
         return productInfoMapper.updateDeleteFlagByPrimaryKey(id);
+    }
+
+    public List<ProductInfo> search(String productName) {
+        return productInfoMapper.search(productName);
     }
 }

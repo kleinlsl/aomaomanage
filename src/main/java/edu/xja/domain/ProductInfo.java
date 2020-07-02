@@ -31,6 +31,8 @@ public class ProductInfo {
 
     private String intro;
 
+    // 添加关联属性
+    private Type typeInfo;
 //    public Integer getId() {
 //        return id;
 //    }

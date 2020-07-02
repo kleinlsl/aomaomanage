@@ -1,6 +1,7 @@
 package edu.xja.dao;
 
 import edu.xja.domain.ProductInfo;
+import edu.xja.domain.Type;
 
 import java.util.List;
 
@@ -35,5 +36,8 @@ public interface ProductInfoMapper {
 
     // TODO: 2020/6/30 通过主键删除商品信息（逻辑删除）
     int updateDeleteFlagByPrimaryKey(Integer id);
+
+    // TODO: 2020/7/2 通过商品名 ， 模糊查询商品信息
+    List<ProductInfo> search(String productName);
 
 }

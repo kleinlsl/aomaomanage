@@ -2,6 +2,7 @@ package edu.xja.dao;
 
 import edu.xja.BaseTest;
 import edu.xja.domain.ProductInfo;
+import edu.xja.domain.Type;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -121,5 +122,15 @@ public class ProductInfoMapperTest extends BaseTest {
         int res = productInfoMapper.updateDeleteFlagByPrimaryKey(1);
         Assert.assertNotNull(res);
         Assert.assertTrue(res==1);
+    }
+
+    @Test
+    public void search() {
+        List<ProductInfo> typeList=productInfoMapper.search("");
+        Assert.assertNotNull(typeList);
+        for (ProductInfo t:typeList
+        ) {
+            System.out.println(t);
+        }
     }
 }
