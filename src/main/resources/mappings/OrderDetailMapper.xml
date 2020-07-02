@@ -37,7 +37,7 @@
       operate_time, operator
       )
     values (#{oId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER},
-      #{num,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, now(), #{creator,jdbcType=VARCHAR},
       #{operateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR})
   </insert>
 
