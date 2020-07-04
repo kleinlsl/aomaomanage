@@ -39,12 +39,17 @@ public class AdminController {
             return FrameResponse.failure("fail");
         }
     }
-    //修改密码
-    @PostMapping("/uppass")
-    public FrameResponse upAdminPass(Admin admin) {
+
+    /**
+     * 修改密码
+     * @param admin
+     * @return
+     */
+    @PostMapping("/update")
+    public FrameResponse updateAdminPass(Admin admin) {
         int res = adminService.updateByPrimaryKeySelective(admin);
         if (res == 1) {
-            return FrameResponse.success("Successfully updated product info!!!");
+            return FrameResponse.success("Successfully update adminPass!!!");
         } else {
             return FrameResponse.failure("fail");
         }

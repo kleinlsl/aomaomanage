@@ -62,7 +62,7 @@ public class UserInfoController {
     public FrameResponse addUserInfo(UserInfo userInfo){
         int res=userInfoService.insert(userInfo);
         if (res==1){
-            return FrameResponse.success("添加会员信息成功！！！");
+            return FrameResponse.success("Successfully add user info！！！");
         }
         return FrameResponse.failure("fail");
     }
@@ -76,7 +76,7 @@ public class UserInfoController {
     public FrameResponse updateUserInfo(UserInfo userInfo){
         int res=userInfoService.updateByPrimaryKeySelective(userInfo);
         if (res==1){
-            return FrameResponse.success("修改会员信息成功!!!");
+            return FrameResponse.success("Successfully update user info!!!");
         }
         else {
             return FrameResponse.failure("fail");
@@ -91,7 +91,7 @@ public class UserInfoController {
     public FrameResponse deleteUserInfo(@PathVariable int id){
         int res=userInfoService.updateDeleteFlagByPrimaryKey(id);
         if (res==1){
-            return FrameResponse.success("删除会员信息成功!!!");
+            return FrameResponse.success("successfully deleted!!!");
         }
         else
         {
