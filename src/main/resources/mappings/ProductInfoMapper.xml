@@ -14,7 +14,8 @@
         <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
         <result column="operator" jdbcType="VARCHAR" property="operator" />
         <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
-        <collection property="typeInfo" select="edu.xja.dao.TypeMapper.selectByPrimaryKey" column="id"/>
+        <!--   一对一关联映射     -->
+        <association property="typeInfo" select="edu.xja.dao.TypeMapper.selectByPrimaryKey" column="t_id"/>
     </resultMap>
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.xja.domain.ProductInfo">
         <result column="intro" jdbcType="LONGVARCHAR" property="intro" />
@@ -246,6 +247,8 @@
     <select id="search" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
         from t_product_info
         <where>
             <if test="productName != null">

@@ -60,9 +60,9 @@ public class ProductInfoController {
     public FrameResponse searchProductInfo(Integer page,Integer pageSize,String productName){
         PageHelper.startPage(page,pageSize);
         List<ProductInfo> productInfos=productInfoService.search(productName);
-        System.out.println(productInfos.get(0));
+//        System.out.println(productInfos.get(0));
         PageInfo<ProductInfo> pageInfo=new PageInfo<ProductInfo>(productInfos);
-        System.out.println(pageInfo.getList().get(0));
+//        System.out.println(pageInfo.getList().get(0));
         return FrameResponse.success(pageInfo);
     }
 }

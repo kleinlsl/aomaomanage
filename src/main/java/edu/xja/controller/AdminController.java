@@ -39,6 +39,16 @@ public class AdminController {
             return FrameResponse.failure("fail");
         }
     }
+    @PostMapping("/getAdmin")
+    public FrameResponse getAdmin(String adminAccount){
+        Admin admin=adminService.selectByAccount(adminAccount);
+        if (admin!=null){
+           return FrameResponse.success(admin);
+        }
+        else {
+            return FrameResponse.failure("fail");
+        }
+    }
 
     /**
      * 修改密码

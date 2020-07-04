@@ -120,19 +120,26 @@
     update t_admin
     set
 <!--       admin_account = #{adminAccount,jdbcType=VARCHAR},-->
-      admin_pass = #{adminPass,jdbcType=VARCHAR},
+        admin_pass = #{adminPass,jdbcType=VARCHAR},
     <!--       create_time = #{createTime,jdbcType=TIMESTAMP},-->
    <!--       creator = #{creator,jdbcType=VARCHAR},-->
-          operate_time = now(),
-          operator = #{operator,jdbcType=VARCHAR},
-          delete_flag = #{deleteFlag,jdbcType=TINYINT}
+        operate_time = now(),
+        operator = #{operator,jdbcType=VARCHAR},
+        delete_flag = #{deleteFlag,jdbcType=TINYINT}
         where id = #{id,jdbcType=INTEGER}
-      </update>
+  </update>
 
-      <select id="selectByAccountAndPass" resultMap="BaseResultMap">
-            select
-            <include refid="Base_Column_List"/>
-            from t_admin
-            where  admin_account = #{param1,jdbcType=VARCHAR} and admin_pass = #{param2,jdbcType=VARCHAR}
-      </select>
-    </mapper>
+  <select id="selectByAccountAndPass" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_admin
+        where  admin_account = #{param1,jdbcType=VARCHAR} and admin_pass = #{param2,jdbcType=VARCHAR}
+  </select>
+  <!--  -->
+  <select id="selectByAccount" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from t_admin
+      where  admin_account = #{param1,jdbcType=VARCHAR}
+  </select>
+</mapper>
