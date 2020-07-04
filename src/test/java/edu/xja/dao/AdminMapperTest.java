@@ -2,6 +2,7 @@ package edu.xja.dao;
 
 import edu.xja.BaseTest;
 import edu.xja.domain.Admin;
+import edu.xja.domain.ProductInfo;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,5 +28,26 @@ public class AdminMapperTest extends BaseTest {
         admin=adminMapper.selectByAccountAndPass("admin","admin");
         System.out.println(admin);
         Assert.assertNotNull(admin);
+    }
+    @Test
+    public void insert() {
+        Admin admin = new Admin();
+        admin.setAdminAccount("admin1");
+        admin.setAdminPass("111111");
+        admin.setCreator("admin");
+
+        int res=adminMapper.insert(admin);
+        Assert.assertNotNull(res);
+        Assert.assertTrue(res==1);
+    }
+
+    @Test
+    public void updateByPrimaryKeySelective() {
+        Admin admin=adminMapper.selectByPrimaryKey(2);
+        admin.setAdminPass("1111");
+
+        int res=adminMapper.updateByPrimaryKeySelective(admin);
+        Assert.assertNotNull(res);
+        Assert.assertTrue(res==1);
     }
 }

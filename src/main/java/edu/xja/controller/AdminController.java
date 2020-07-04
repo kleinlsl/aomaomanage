@@ -3,6 +3,7 @@ package edu.xja.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import edu.xja.domain.Admin;
+import edu.xja.domain.ProductInfo;
 import edu.xja.domain.Type;
 import edu.xja.service.AdminService;
 import edu.xja.vo.FrameResponse;
@@ -35,6 +36,21 @@ public class AdminController {
            return FrameResponse.success("success");
         }
         else {
+            return FrameResponse.failure("fail");
+        }
+    }
+
+    /**
+     * 修改密码
+     * @param admin
+     * @return
+     */
+    @PostMapping("/update")
+    public FrameResponse updateAdminPass(Admin admin) {
+        int res = adminService.updateByPrimaryKeySelective(admin);
+        if (res == 1) {
+            return FrameResponse.success("Successfully update adminPass!!!");
+        } else {
             return FrameResponse.failure("fail");
         }
     }

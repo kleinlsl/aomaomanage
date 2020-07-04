@@ -30,7 +30,7 @@ public class ProductInfoController {
     public FrameResponse addProductInfo(ProductInfo productInfo){
         int res=productInfoService.insert(productInfo);
         if (res==1){
-            return FrameResponse.success("添加商品信息成功！！！");
+            return FrameResponse.success("Successfully add product info！！！");
         }
         return FrameResponse.failure("fail");
     }
@@ -38,7 +38,7 @@ public class ProductInfoController {
     public FrameResponse updateProductInfo(ProductInfo productInfo){
         int res=productInfoService.updateByPrimaryKeySelective(productInfo);
         if (res==1){
-            return FrameResponse.success("Successfully updated product info!!!");
+            return FrameResponse.success("Successfully update product info!!!");
         }
         else {
             return FrameResponse.failure("fail");

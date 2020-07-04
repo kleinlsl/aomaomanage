@@ -3,13 +3,11 @@ package edu.xja.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import edu.xja.domain.ProductInfo;
 import edu.xja.domain.UserInfo;
 import edu.xja.service.UserInfoService;
 import edu.xja.vo.FrameResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -52,6 +50,52 @@ public class UserInfoController {
             else {
                 return FrameResponse.failure("Unknown error, please try again！");
             }
+        }
+    }
+
+    /**
+     * 添加会员
+     * @param userInfo
+     * @return
+     */
+    @PostMapping("/add")
+    public FrameResponse addUserInfo(UserInfo userInfo){
+        int res=userInfoService.insert(userInfo);
+        if (res==1){
+            return FrameResponse.success("Successfully add user info！！！");
+        }
+        return FrameResponse.failure("fail");
+    }
+
+    /**
+     * 修改会员信息
+     * @param userInfo
+     * @return
+     */
+    @PostMapping("/update")
+    public FrameResponse updateUserInfo(UserInfo userInfo){
+        int res=userInfoService.updateByPrimaryKeySelective(userInfo);
+        if (res==1){
+            return FrameResponse.success("Successfully update user info!!!");
+        }
+        else {
+            return FrameResponse.failure("fail");
+        }
+    }
+    /**
+     * 删除会员
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/delete/{id}")
+    public FrameResponse deleteUserInfo(@PathVariable int id){
+        int res=userInfoService.updateDeleteFlagByPrimaryKey(id);
+        if (res==1){
+            return FrameResponse.success("successfully deleted!!!");
+        }
+        else
+        {
+            return FrameResponse.failure("fail");
         }
     }
 

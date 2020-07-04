@@ -26,12 +26,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.xja.domain.Admin">
-    insert into t_admin (id, admin_account, admin_pass, 
+    insert into t_admin (admin_account, admin_pass,
       create_time, creator, operate_time, 
-      operator, delete_flag)
-    values (#{id,jdbcType=INTEGER}, #{adminAccount,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}, 
-      #{operator,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=TINYINT})
+      operator)
+    values (#{adminAccount,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR},
+      now(), #{creator,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP},
+      #{operator,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.xja.domain.Admin">
     insert into t_admin
@@ -91,21 +91,22 @@
   <update id="updateByPrimaryKeySelective" parameterType="edu.xja.domain.Admin">
     update t_admin
     <set>
-      <if test="adminAccount != null">
-        admin_account = #{adminAccount,jdbcType=VARCHAR},
-      </if>
+<!--      <if test="adminAccount != null">-->
+<!--        admin_account = #{adminAccount,jdbcType=VARCHAR},-->
+<!--      </if>-->
       <if test="adminPass != null">
         admin_pass = #{adminPass,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        creator = #{creator,jdbcType=VARCHAR},
-      </if>
-      <if test="operateTime != null">
-        operate_time = #{operateTime,jdbcType=TIMESTAMP},
-      </if>
+<!--      <if test="createTime != null">-->
+<!--        create_time = #{createTime,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--      <if test="creator != null">-->
+<!--        creator = #{creator,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="operateTime != null">-->
+<!--        operate_time = #{operateTime,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+      operate_time = now(),
       <if test="operator != null">
         operator = #{operator,jdbcType=VARCHAR},
       </if>
@@ -117,20 +118,21 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.xja.domain.Admin">
     update t_admin
-    set admin_account = #{adminAccount,jdbcType=VARCHAR},
+    set
+<!--       admin_account = #{adminAccount,jdbcType=VARCHAR},-->
       admin_pass = #{adminPass,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      creator = #{creator,jdbcType=VARCHAR},
-      operate_time = #{operateTime,jdbcType=TIMESTAMP},
-      operator = #{operator,jdbcType=VARCHAR},
-      delete_flag = #{deleteFlag,jdbcType=TINYINT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <!--       create_time = #{createTime,jdbcType=TIMESTAMP},-->
+   <!--       creator = #{creator,jdbcType=VARCHAR},-->
+          operate_time = now(),
+          operator = #{operator,jdbcType=VARCHAR},
+          delete_flag = #{deleteFlag,jdbcType=TINYINT}
+        where id = #{id,jdbcType=INTEGER}
+      </update>
 
-  <select id="selectByAccountAndPass" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from t_admin
-        where  admin_account = #{param1,jdbcType=VARCHAR} and admin_pass = #{param2,jdbcType=VARCHAR}
-  </select>
-</mapper>
+      <select id="selectByAccountAndPass" resultMap="BaseResultMap">
+            select
+            <include refid="Base_Column_List"/>
+            from t_admin
+            where  admin_account = #{param1,jdbcType=VARCHAR} and admin_pass = #{param2,jdbcType=VARCHAR}
+      </select>
+    </mapper>
