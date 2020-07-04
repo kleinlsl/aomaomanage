@@ -29,7 +29,7 @@ public class TypeController {
 
     @PostMapping("/addType")
     public FrameResponse addProductType(String adminName, String typeName){
-        if (adminName!=""&&typeName!=""){
+        if (adminName==""||typeName==""){
             FrameResponse.failure("Parameter error! ! !");
         }
         else if (true/*adminName存在*/){
@@ -69,6 +69,17 @@ public class TypeController {
     public FrameResponse deleteType(@PathVariable int id){
         int res=typeService.updateDeleteFlagByPrimaryKey(id);
         if (res==1){
+            return FrameResponse.success("successfully deleted!!!");
+        }
+        else
+        {
+            return FrameResponse.failure("fail");
+        }
+    }
+    @GetMapping("selectById/{id}")
+    public FrameResponse selectById(@PathVariable int id){
+        Type type=typeService.selectByPrimaryKey(id);
+        if (type!=null){
             return FrameResponse.success("successfully deleted!!!");
         }
         else

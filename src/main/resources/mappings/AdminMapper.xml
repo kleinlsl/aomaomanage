@@ -20,7 +20,8 @@
     from t_admin
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -125,4 +126,11 @@
       delete_flag = #{deleteFlag,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByAccountAndPass" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_admin
+        where  admin_account = #{param1,jdbcType=VARCHAR} and admin_pass = #{param2,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -4,6 +4,7 @@ import edu.xja.dao.OrderDetailMapper;
 import edu.xja.dao.OrderInfoMapper;
 import edu.xja.domain.OrderDetail;
 import edu.xja.domain.OrderInfo;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * @version: 1.0
  * @website:
  */
+@Service
 public class OrderDetailServiceImpl {
 
     @Resource

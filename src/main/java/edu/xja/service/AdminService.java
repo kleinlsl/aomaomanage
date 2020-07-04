@@ -1,9 +1,16 @@
-package edu.xja.dao;
+package edu.xja.service;
 
 import edu.xja.domain.Admin;
 
-public interface AdminMapper {
-
+/**
+ * @project: aomaomanage
+ * @description:
+ * @author: dell
+ * @date: 2020/7/3 - 22:54
+ * @version: 1.0
+ * @website:
+ */
+public interface AdminService {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Admin record);
@@ -16,5 +23,5 @@ public interface AdminMapper {
 
     int updateByPrimaryKey(Admin record);
 
-    Admin selectByAccountAndPass(String adminAccount,String adminPass);
+    Admin selectByAccountAndPass(String adminAccount, String adminPass);
 }
