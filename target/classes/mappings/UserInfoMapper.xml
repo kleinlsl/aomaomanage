@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xja.dao.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="edu.xja.domain.UserInfo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="real_name" jdbcType="VARCHAR" property="realName" />
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+        <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="creator" jdbcType="VARCHAR" property="creator" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+        <result column="operator" jdbcType="VARCHAR" property="operator" />
+        <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_name, password, real_name, nick_name, sex, telephone, address, email, reg_date,
+    create_time, creator, status, operate_time, operator, delete_flag
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_user_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_user_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="edu.xja.domain.UserInfo">
+        insert into t_user_info (user_name, password,
+                                 real_name, nick_name, sex,
+                                 telephone, address, email,
+                                 reg_date, create_time, creator,
+                                 operate_time, operator
+                                 )
+        values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{realName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+                #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+                now(), now(), #{creator,jdbcType=VARCHAR},
+                #{operateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}
+                )
+    </insert>
+    <insert id="insertSelective" parameterType="edu.xja.domain.UserInfo">
+        insert into t_user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="telephone != null">
+                telephone,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+<!--            <if test="regDate != null">-->
+                reg_date,
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+                create_time,
+<!--            </if>-->
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="operateTime != null">
+                operate_time,
+            </if>
+            <if test="operator != null">
+                operator,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+<!--            <if test="regDate != null">-->
+               now(),
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+               now(),
+<!--            </if>-->
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="operateTime != null">
+                #{operateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operator != null">
+                #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+    <!--  通过主键选择性更新会员信息   -->
+    <update id="updateByPrimaryKeySelective" parameterType="edu.xja.domain.UserInfo">
+        update t_user_info
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+<!--            <if test="regDate != null">-->
+<!--                reg_date = #{regDate,jdbcType=TIMESTAMP},-->
+<!--            </if>-->
+<!--            <if test="createTime != null">-->
+<!--                create_time = #{createTime,jdbcType=TIMESTAMP},-->
+<!--            </if>-->
+<!--            <if test="creator != null">-->
+<!--                creator = #{creator,jdbcType=VARCHAR},-->
+<!--            </if>-->
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+<!--            <if test="operateTime != null">-->
+                operate_time = now(),
+<!--            </if>-->
+            <if test="operator != null">
+                operator = #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--  通过主键更新会员信息  -->
+    <update id="updateByPrimaryKey" parameterType="edu.xja.domain.UserInfo">
+        update t_user_info
+        set user_name = #{userName,jdbcType=VARCHAR},
+            password = #{password,jdbcType=VARCHAR},
+            real_name = #{realName,jdbcType=VARCHAR},
+            nick_name = #{nickName,jdbcType=VARCHAR},
+            sex = #{sex,jdbcType=VARCHAR},
+            telephone = #{telephone,jdbcType=VARCHAR},
+            address = #{address,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            reg_date = #{regDate,jdbcType=TIMESTAMP},
+        <!--    create_time = #{createTime,jdbcType=TIMESTAMP},
+            creator = #{creator,jdbcType=VARCHAR}, -->
+            status = #{status,jdbcType=INTEGER},
+            operate_time = now(),
+            operator = #{operator,jdbcType=VARCHAR},
+            delete_flag = #{deleteFlag,jdbcType=TINYINT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查找所有会员信息  -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_info
+        where delete_flag=0
+    </select>
+    <!--  通过登录名查找用户   -->
+    <select id="findByUserName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_info
+        where delete_flag=0 and user_name=#{userName,jdbcType=VARCHAR}
+    </select>
+    <!--  通过主键删除会员信息（逻辑删除）  -->
+    <update id="updateDeleteFlagByPrimaryKey" parameterType="java.lang.Integer">
+        update t_user_info
+        set delete_flag=1
+        where id= #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

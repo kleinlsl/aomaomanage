@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xja.dao.UserCommentMapper">
+  <resultMap id="BaseResultMap" type="edu.xja.domain.UserComment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="comment_date" jdbcType="TIMESTAMP" property="commentDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.xja.domain.UserComment">
+    <result column="comment_detail" jdbcType="LONGVARCHAR" property="commentDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, comment_date, create_time, creator, operate_time, operator, delete_flag
+  </sql>
+  <sql id="Blob_Column_List">
+    comment_detail
+  </sql>
+
+  <!--  通过主键查找留言信息   -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_user_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!--通过主键删除留言信息     -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <!--  添加留言信息   暂时后台无此功能，会员自行留言  -->
+  <insert id="insert" parameterType="edu.xja.domain.UserComment">
+    insert into t_user_comment (u_id, comment_date,
+      create_time, creator, operate_time, 
+      operator, comment_detail
+      )
+    values (#{uId,jdbcType=INTEGER}, now(),
+      now(), #{creator,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP},
+      #{operator,jdbcType=VARCHAR}, #{commentDetail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+
+  <!--  选择性添加留言信息   -->
+  <insert id="insertSelective" parameterType="edu.xja.domain.UserComment">
+    insert into t_user_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+<!--      <if test="commentDate != null">-->
+        comment_date,
+<!--      </if>-->
+<!--      <if test="createTime != null">-->
+        create_time,
+<!--      </if>-->
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+<!--      <if test="deleteFlag != null">-->
+<!--        delete_flag,-->
+<!--      </if>-->
+      <if test="commentDetail != null">
+        comment_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+<!--      <if test="commentDate != null">-->
+      now(),
+<!--      </if>-->
+<!--      <if test="createTime != null">-->
+      now(),
+<!--      </if>-->
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+<!--      <if test="deleteFlag != null">-->
+<!--        #{deleteFlag,jdbcType=TINYINT},-->
+<!--      </if>-->
+      <if test="commentDetail != null">
+        #{commentDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <!--  通过主键选择性修改信息  暂时后台无此功能-->
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xja.domain.UserComment">
+    update t_user_comment
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+<!--      <if test="commentDate != null">-->
+<!--        comment_date = #{commentDate,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--      <if test="createTime != null">-->
+<!--        create_time = #{createTime,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--      <if test="creator != null">-->
+<!--        creator = #{creator,jdbcType=VARCHAR},-->
+<!--      </if>-->
+        operate_time =now(),
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      </if>
+      <if test="commentDetail != null">
+        comment_detail = #{commentDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--  通过主键修改留言信息（包含留言内容）  -->
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.xja.domain.UserComment">
+    update t_user_comment
+    set u_id = #{uId,jdbcType=INTEGER},
+      comment_date = #{commentDate,jdbcType=TIMESTAMP},
+--       create_time = #{createTime,jdbcType=TIMESTAMP},
+--       creator = #{creator,jdbcType=VARCHAR},
+      operate_time = now(),
+      operator = #{operator,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      comment_detail = #{commentDetail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--  通过主键修改留言信息（不包含留言内容）  -->
+  <update id="updateByPrimaryKey" parameterType="edu.xja.domain.UserComment">
+    update t_user_comment
+    set u_id = #{uId,jdbcType=INTEGER},
+      comment_date = #{commentDate,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      operator = #{operator,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 查找所有留言信息    -->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>,
+    <include refid="Blob_Column_List"/>
+    from t_user_comment
+    where delete_flag=0
+  </select>
+
+  <!--  通过主键删除留言信息（逻辑删除）   -->
+  <update id="updateDeleteFlagByPrimaryKey" parameterType="java.lang.Integer">
+        update t_user_comment
+        set delete_flag=1
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+</mapper>

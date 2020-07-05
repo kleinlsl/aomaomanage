@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xja.dao.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="edu.xja.domain.OrderInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="order_price" jdbcType="DECIMAL" property="orderPrice" />
+    <result column="orde_status" jdbcType="VARCHAR" property="ordeStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, order_time, order_price, orde_status, create_time, creator, operate_time, 
+    operator, delete_flag
+  </sql>
+
+  <!--  通过主键查找订单信息   -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_order_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!--通过主键删除订单信息     -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_order_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <!--添加订单信息     -->
+  <insert id="insert" parameterType="edu.xja.domain.OrderInfo">
+    insert into t_order_info (u_id, order_time,
+      order_price, orde_status, create_time, 
+      creator, operate_time, operator)
+    values (#{uId,jdbcType=INTEGER}, now(),
+      #{orderPrice,jdbcType=DECIMAL}, #{ordeStatus,jdbcType=VARCHAR}, now(),
+      #{creator,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR})
+  </insert>
+
+  <!--  选择性添加订单信息   -->
+  <insert id="insertSelective" parameterType="edu.xja.domain.OrderInfo">
+    insert into t_order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+<!--      <if test="orderTime != null">-->
+        order_time,
+<!--      </if>-->
+      <if test="orderPrice != null">
+        order_price,
+      </if>
+      <if test="ordeStatus != null">
+        orde_status,
+      </if>
+<!--      <if test="createTime != null">-->
+        create_time,
+<!--      </if>-->
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+<!--      <if test="deleteFlag != null">-->
+<!--        delete_flag,-->
+<!--      </if>-->
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+<!--      <if test="orderTime != null">-->
+      now(),
+<!--      </if>-->
+      <if test="orderPrice != null">
+        #{orderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ordeStatus != null">
+        #{ordeStatus,jdbcType=VARCHAR},
+      </if>
+<!--      <if test="createTime != null">-->
+      now(),
+<!--      </if>-->
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+<!--      <if test="deleteFlag != null">-->
+<!--        #{deleteFlag,jdbcType=TINYINT},-->
+<!--      </if>-->
+    </trim>
+  </insert>
+
+  <!--  通过主键选择性修改订单信息 -->
+  <update id="updateByPrimaryKeySelective" parameterType="edu.xja.domain.OrderInfo">
+    update t_order_info
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+<!--      <if test="orderTime != null">-->
+<!--        order_time = #{orderTime,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+      <if test="orderPrice != null">
+        order_price = #{orderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ordeStatus != null">
+        orde_status = #{ordeStatus,jdbcType=VARCHAR},
+      </if>
+<!--      <if test="createTime != null">-->
+<!--        create_time = #{createTime,jdbcType=TIMESTAMP},-->
+<!--      </if>-->
+<!--      <if test="creator != null">-->
+<!--        creator = #{creator,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="operateTime != null">-->
+        operate_time = now(),
+<!--      </if>-->
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--  通过主键修改订单信息  -->
+  <update id="updateByPrimaryKey" parameterType="edu.xja.domain.OrderInfo">
+    update t_order_info
+    set u_id = #{uId,jdbcType=INTEGER},
+--       order_time = #{orderTime,jdbcType=TIMESTAMP},
+      order_price = #{orderPrice,jdbcType=DECIMAL},
+      orde_status = #{ordeStatus,jdbcType=VARCHAR},
+--       create_time = #{createTime,jdbcType=TIMESTAMP},
+--       creator = #{creator,jdbcType=VARCHAR},
+      operate_time = now(),
+      operator = #{operator,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 查找所有订单信息    -->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from t_order_info
+    where delete_flag=0
+  </select>
+
+  <!--  通过主键删除留言信息（逻辑删除）   -->
+  <update id="updateDeleteFlagByPrimaryKey" parameterType="java.lang.Integer">
+        update t_order_info
+        set delete_flag=1
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+</mapper>

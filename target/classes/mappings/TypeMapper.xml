@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xja.dao.TypeMapper">
+    <!--    结果映射    -->
+    <resultMap id="BaseResultMap" type="edu.xja.domain.Type">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="creator" jdbcType="VARCHAR" property="creator" />
+        <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+        <result column="operator" jdbcType="VARCHAR" property="operator" />
+        <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
+    </resultMap>
+
+    <!--  sql结果list  -->
+    <sql id="Base_Column_List">
+        id, name, create_time, creator, operate_time, operator, delete_flag
+    </sql>
+
+    <!--    通过主键查询商品类别  -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_type
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--  通过主键删除商品类别  -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_type
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <!--  添加商品类别  -->
+    <insert id="insert" parameterType="edu.xja.domain.Type">
+        insert into t_type (
+                            name, create_time,
+                            creator, operate_time, operator
+                            )
+        values (
+                #{name,jdbcType=VARCHAR}, now(),
+                #{creator,jdbcType=VARCHAR},
+                #{operateTime,jdbcType=TIMESTAMP},
+                #{operator,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!-- 选择性添加商品类别 -->
+    <insert id="insertSelective" parameterType="edu.xja.domain.Type">
+        insert into t_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+<!--            <if test="createTime != null">-->
+                create_time,
+<!--            </if>-->
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="operateTime != null">
+                operate_time,
+            </if>
+            <if test="operator != null">
+                operator,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            now(),
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="operateTime != null">
+                #{operateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operator != null">
+                #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+    <!--  通过主键选择性更新类别信息  -->
+    <update id="updateByPrimaryKeySelective" parameterType="edu.xja.domain.Type">
+        update t_type
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+<!--            <if test="createTime != null">-->
+<!--                create_time = #{createTime,jdbcType=TIMESTAMP},-->
+<!--            </if>-->
+<!--            <if test="creator != null">-->
+<!--                creator = #{creator,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="operateTime != null">-->
+                operate_time = now(),
+<!--#             </if>-->
+            <if test="operator != null">
+                operator = #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--  通过主键更新全部信息  -->
+    <update id="updateByPrimaryKey" parameterType="edu.xja.domain.Type">
+        update t_type
+        set name = #{name,jdbcType=VARCHAR},
+          <!--  create_time = #{createTime,jdbcType=TIMESTAMP},
+            creator = #{creator,jdbcType=VARCHAR},-->
+            operate_time = now(),
+            operator = #{operator,jdbcType=VARCHAR},
+            delete_flag = #{deleteFlag,jdbcType=TINYINT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询全部商品类别  -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_type
+        where delete_flag=0
+    </select>
+
+    <!--  通过主键删除商品类别信息(逻辑删除)   -->
+    <update id="updateDeleteFlagByPrimaryKey" parameterType="java.lang.Integer">
+        update t_type
+        set delete_flag=1
+        where id= #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 通过类别名 ， 模糊查询类别信息   -->
+    <select id="search" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_type
+        <where>
+            <if test="typeName != null">
+                name like concat('%',#{typeName},'%')
+            </if>
+        </where>
+
+    </select>
+
+</mapper>

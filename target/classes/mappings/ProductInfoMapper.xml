@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xja.dao.ProductInfoMapper">
+    <resultMap id="BaseResultMap" type="edu.xja.domain.ProductInfo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="code" jdbcType="VARCHAR" property="code" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="t_id" jdbcType="INTEGER" property="tId" />
+        <result column="num" jdbcType="INTEGER" property="num" />
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="creator" jdbcType="VARCHAR" property="creator" />
+        <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+        <result column="operator" jdbcType="VARCHAR" property="operator" />
+        <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag" />
+        <collection property="typeInfo" select="edu.xja.dao.TypeMapper.selectByPrimaryKey" column="id"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.xja.domain.ProductInfo">
+        <result column="intro" jdbcType="LONGVARCHAR" property="intro" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, code, name, t_id, num, price, status, create_time, creator, operate_time, operator,
+    delete_flag
+    </sql>
+    <sql id="Blob_Column_List">
+        intro
+    </sql>
+
+    <!--  通过主键查找商品信息   -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from t_product_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+<!--通过主键删除商品信息     -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_product_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <!--  添加商品信息   -->
+    <insert id="insert" parameterType="edu.xja.domain.ProductInfo">
+        insert into t_product_info (code, name,
+                                    t_id, num, price,
+                                    create_time, creator, operate_time,
+                                    operator, intro
+        )
+        values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+                #{tId,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL},
+                now(), #{creator,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP},
+                #{operator,jdbcType=VARCHAR}, #{intro,jdbcType=LONGVARCHAR}
+               )
+    </insert>
+
+    <!--  选择性添加商品信息   -->
+    <insert id="insertSelective" parameterType="edu.xja.domain.ProductInfo">
+        insert into t_product_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="tId != null">
+                t_id,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+<!--#             <if test="createTime != null">-->
+                create_time,
+<!--            </if>-->
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="operateTime != null">
+                operate_time,
+            </if>
+            <if test="operator != null">
+                operator,
+            </if>
+<!--            <if test="deleteFlag != null">-->
+<!--#                 delete_flag,-->
+<!--#             </if>-->
+            <if test="intro != null">
+                intro,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="tId != null">
+                #{tId,jdbcType=INTEGER},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+
+<!--            <if test="createTime != null">-->
+                now(),
+<!--            </if>-->
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="operateTime != null">
+                #{operateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operator != null">
+                #{operator,jdbcType=VARCHAR},
+            </if>
+<!--            <if test="deleteFlag != null">-->
+<!--                #{deleteFlag,jdbcType=TINYINT},-->
+<!--            </if>-->
+
+            <if test="intro != null">
+                #{intro,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--  通过主键选择性更新商品信息  -->
+    <update id="updateByPrimaryKeySelective" parameterType="edu.xja.domain.ProductInfo">
+        update t_product_info
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="tId != null">
+                t_id = #{tId,jdbcType=INTEGER},
+            </if>
+            <if test="num != null">
+                num = #{num,jdbcType=INTEGER},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+<!--            <if test="createTime != null">-->
+<!--                create_time = #{createTime,jdbcType=TIMESTAMP},-->
+<!--            </if>-->
+<!--            <if test="creator != null">-->
+<!--                creator = #{creator,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="operateTime != null">-->
+<!--                operate_time = #{operateTime,jdbcType=TIMESTAMP},-->
+<!--            </if>-->
+            operate_time=now(),
+            <if test="operator != null">
+                operator = #{operator,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=TINYINT},
+            </if>
+            <if test="intro != null">
+                intro = #{intro,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--  通过主键更新商品信息（包含商品描述）  -->
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.xja.domain.ProductInfo">
+        update t_product_info
+        set code = #{code,jdbcType=VARCHAR},
+            name = #{name,jdbcType=VARCHAR},
+            t_id = #{tId,jdbcType=INTEGER},
+            num = #{num,jdbcType=INTEGER},
+            price = #{price,jdbcType=DECIMAL},
+            status = #{status,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            creator = #{creator,jdbcType=VARCHAR},
+            operate_time = #{operateTime,jdbcType=TIMESTAMP},
+            operator = #{operator,jdbcType=VARCHAR},
+            delete_flag = #{deleteFlag,jdbcType=TINYINT},
+            intro = #{intro,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--  通过主键更新商品信息（不包含商品描述）  -->
+    <update id="updateByPrimaryKey" parameterType="edu.xja.domain.ProductInfo">
+        update t_product_info
+        set code = #{code,jdbcType=VARCHAR},
+            name = #{name,jdbcType=VARCHAR},
+            t_id = #{tId,jdbcType=INTEGER},
+            num = #{num,jdbcType=INTEGER},
+            price = #{price,jdbcType=DECIMAL},
+            status = #{status,jdbcType=INTEGER},
+      <!--      create_time = #{createTime,jdbcType=TIMESTAMP},
+            creator = #{creator,jdbcType=VARCHAR}, -->
+            operate_time = now(),
+            operator = #{operator,jdbcType=VARCHAR},
+            delete_flag = #{deleteFlag,jdbcType=TINYINT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查找所有商品信息    -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>,
+       <include refid="Blob_Column_List"/>
+        from t_product_info
+        where delete_flag=0
+    </select>
+
+    <!--  通过主键删除商品信息（逻辑删除）   -->
+    <update id="updateDeleteFlagByPrimaryKey" parameterType="java.lang.Integer">
+        update t_product_info
+        set delete_flag=1
+        where id=#{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 通过类别名 ， 模糊查询类别信息   -->
+    <select id="search" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_product_info
+        <where>
+            <if test="productName != null">
+                name like concat('%',#{productName},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
