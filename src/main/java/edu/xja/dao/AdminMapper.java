@@ -3,6 +3,7 @@ package edu.xja.dao;
 import edu.xja.domain.Admin;
 
 /**
+ * @project: aomaomanage
  * @description: 管理员表，数据访问层
  * @date: 2020/7/4
  */

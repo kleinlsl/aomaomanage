@@ -1,10 +1,6 @@
 package edu.xja.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import edu.xja.domain.Admin;
-import edu.xja.domain.ProductInfo;
-import edu.xja.domain.Type;
 import edu.xja.service.AdminService;
 import edu.xja.vo.FrameResponse;
 import org.springframework.web.bind.annotation.GetMapping;
