@@ -12,13 +12,13 @@ package edu.xja.vo;
 
 import java.util.HashMap;
 
-/**
- * 返回类型FrameResponse
- *
- * @author
- * @date
- * <p>
- */
+///**
+// * 返回类型FrameResponse
+// *
+// * @author
+// * @date
+// * <p>
+// */
 public class FrameResponse extends HashMap<String, Object> {
 
     private static final long serialVersionUID = 6769157532172136264L;
