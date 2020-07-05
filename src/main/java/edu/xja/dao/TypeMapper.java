@@ -1,8 +1,8 @@
 package edu.xja.dao;
-/**
- * @description: 商品类别表，数据访问层
- * @date: 2020/6/29 - 19:31
- */
+///**
+// * @description: 商品类别表，数据访问层
+// * @date: 2020/6/29 - 19:31
+// */
 
 import edu.xja.domain.Type;
 

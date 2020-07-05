@@ -4,11 +4,11 @@ import edu.xja.domain.OrderInfo;
 
 
 import java.util.List;
-
-/**
- * @description: 订单表，数据访问层
- * @date: 2020/6/30
- */
+//
+///**
+// * @description: 订单表，数据访问层
+// * @date: 2020/6/30
+// */
 public interface OrderInfoMapper {
 
     //TODO: 2020/6/30 通过主键删除订单信息（物理删除）

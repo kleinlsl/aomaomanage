@@ -5,10 +5,10 @@ import edu.xja.domain.Type;
 
 import java.util.List;
 
-/**
- * @description: 商品信息表，数据访问层
- * @date: 2020/6/29 - 21:53
- */
+///**
+// * @description: 商品信息表，数据访问层
+// * @date: 2020/6/29 - 21:53
+// */
 public interface ProductInfoMapper {
     // TODO: 2020/6/29 通过主键删除商品信息（物理删除）
     int deleteByPrimaryKey(Integer id);
