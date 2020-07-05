@@ -1,11 +1,13 @@
 package edu.xja.dao;
 
 import edu.xja.domain.Admin;
-
 /**
  * @project: aomaomanage
- * @description: 管理员表，数据访问层
- * @date: 2020/7/4
+ * @description: 控制层：管理员
+ * @author: dell
+ * @date: 2020/7/4 - 22:38
+ * @version: 1.0
+ * @website:
  */
 public interface AdminMapper {
 
