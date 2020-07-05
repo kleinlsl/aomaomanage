@@ -4,10 +4,10 @@ import edu.xja.domain.UserComment;
 
 import java.util.List;
 
-/**
- * @description: 会员留言表，数据访问层
- * @date: 2020/6/30 - 17.59
- */
+///**
+// * @description: 会员留言表，数据访问层
+// * @date: 2020/6/30 - 17.59
+// */
 public interface UserCommentMapper {
 
     //TODO: 2020/6/30 通过主键删除留言信息（物理删除）
