@@ -5,7 +5,7 @@
 
     ```
     $ git clone https://gitee.com/kleinlsl/aomaomanage.git
-    ``` 
+    ```
 * IDEA工具clone
     * 安装插件gitee
     * clone
@@ -54,5 +54,13 @@ D:
 ├─pom.xml           #maven配置文件
 └─readme.md
 ```
+## 数据库ER图
+![](other-resource\project-image\aomao-ER.png)
 
 ## 项目功能
+
+![](other-resource\project-image\澳猫团功能模块图.png)
+
+## 系统主界面
+
+![](other-resource\project-image\系统主界面-V1.0.png)
