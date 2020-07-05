@@ -75,10 +75,6 @@ public class ProductInfoMapperTest extends BaseTest {
         ProductInfo productInfo=productInfoMapper.selectByPrimaryKey(4);
         productInfo.setCode("product004");
         productInfo.setName("海尔电视004");
-//        productInfo.setTId(1);
-//        productInfo.setNum(10);
-//        productInfo.setPrice((long) 1999.0);
-//        productInfo.setCreator("admin");
         int res=productInfoMapper.updateByPrimaryKeySelective(productInfo);
         Assert.assertNotNull(res);
         Assert.assertTrue(res==1);
