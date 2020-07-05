@@ -47,4 +47,8 @@ public class AdminServiceImpl implements AdminService {
     public Admin selectByAccountAndPass(String adminAccount, String adminPass) {
         return adminMapper.selectByAccountAndPass(adminAccount,adminPass);
     }
+
+    public Admin selectByAccount(String adminAccount) {
+        return adminMapper.selectByAccount(adminAccount);
+    }
 }

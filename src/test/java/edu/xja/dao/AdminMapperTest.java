@@ -50,4 +50,10 @@ public class AdminMapperTest extends BaseTest {
         Assert.assertNotNull(res);
         Assert.assertTrue(res==1);
     }
+
+    @Test
+    public void selectByAccount() {
+        Admin admin=adminMapper.selectByAccount("admin");
+        System.out.println(admin);
+    }
 }

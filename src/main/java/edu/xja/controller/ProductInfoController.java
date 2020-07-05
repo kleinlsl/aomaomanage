@@ -45,7 +45,7 @@ public class ProductInfoController {
         }
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public FrameResponse deleteProductInfo(@PathVariable int id){
         int res=productInfoService.updateDeleteFlagByPrimaryKey(id);
         if (res==1){
@@ -57,10 +57,12 @@ public class ProductInfoController {
         }
     }
     @GetMapping("/searchProductInfo")
-    public FrameResponse serchType(Integer page,Integer pageSize,String productName){
+    public FrameResponse searchProductInfo(Integer page,Integer pageSize,String productName){
         PageHelper.startPage(page,pageSize);
         List<ProductInfo> productInfos=productInfoService.search(productName);
+//        System.out.println(productInfos.get(0));
         PageInfo<ProductInfo> pageInfo=new PageInfo<ProductInfo>(productInfos);
+//        System.out.println(pageInfo.getList().get(0));
         return FrameResponse.success(pageInfo);
     }
 }

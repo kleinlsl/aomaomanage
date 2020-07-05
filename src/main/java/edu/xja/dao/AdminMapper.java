@@ -24,4 +24,6 @@ public interface AdminMapper {
 
     //查询管理员是否存在
     Admin selectByAccountAndPass(String adminAccount,String adminPass);
+
+    Admin selectByAccount(String adminAccount);
 }

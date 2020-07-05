@@ -24,4 +24,6 @@ public interface AdminService {
     int updateByPrimaryKey(Admin record);
 
     Admin selectByAccountAndPass(String adminAccount, String adminPass);
+
+    Admin selectByAccount(String adminAccount);
 }

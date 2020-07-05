@@ -65,7 +65,7 @@ public class TypeController {
         }
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public FrameResponse deleteType(@PathVariable int id){
         int res=typeService.updateDeleteFlagByPrimaryKey(id);
         if (res==1){
@@ -76,15 +76,15 @@ public class TypeController {
             return FrameResponse.failure("fail");
         }
     }
-    @GetMapping("selectById/{id}")
-    public FrameResponse selectById(@PathVariable int id){
+    @GetMapping("/selectById")
+    public FrameResponse selectById(Integer id){
         Type type=typeService.selectByPrimaryKey(id);
         if (type!=null){
-            return FrameResponse.success("successfully deleted!!!");
+            return FrameResponse.success("success!!!");
         }
         else
         {
-            return FrameResponse.failure("fail");
+            return FrameResponse.failure("类别ID不存在！！！");
         }
     }
     @GetMapping("/searchType")
