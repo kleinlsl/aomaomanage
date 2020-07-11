@@ -59,8 +59,8 @@ D:
 
 ## 项目功能
 
-![](https://github.com/kleinlsl/aomaomanage/blob/master/other-resource\project-image\澳猫团功能模块图.png)
+![](https://github.com/kleinlsl/aomaomanage/blob/master/other-resource/project-image/澳猫团功能模块图.png)
 
 ## 系统主界面
 
-![](https://github.com/kleinlsl/aomaomanage/blob/master/other-resource\project-image\系统主界面-V1.0.png)
+![](https://github.com/kleinlsl/aomaomanage/blob/master/other-resource/project-image/系统主界面-V1.0.png)
