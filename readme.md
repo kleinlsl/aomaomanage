@@ -5,6 +5,8 @@
 
     ```
     $ git clone https://gitee.com/kleinlsl/aomaomanage.git
+  or  
+    $ git clone https://github.com/kleinlsl/aomaomanage.git
     ```
 * IDEA工具clone
     * 安装插件gitee
@@ -38,7 +40,9 @@ D:
 │  │  │          ├─controller
 │  │  │          ├─dao
 │  │  │          ├─domin
-│  │  │          └─service
+│  │  │          │─service
+│  │  │          │  └─impl
+│  │  │          └─vo
 │  │  ├─resources   # 项目资源文件
 │  │  │  ├─database-conf   # 数据库连接配置
 │  │  │  ├─mappings 
